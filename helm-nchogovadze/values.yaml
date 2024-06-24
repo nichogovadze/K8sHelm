@@ -1,0 +1,47 @@
+
+namespace: nchogovadze
+studentName: nchogovadze
+
+labels:
+  student: nchogovadze
+  testLabel: testMatchLabel
+
+deployment:
+  replicaCount: 1
+  name: nchogovadze-deployment
+  containerName: web-server-nchogovadze
+  containerPort: 80
+  imageName: nginx
+  imageVersion: latest
+
+service:
+  name: nchogovadze-service
+  type: ClusterIP
+  port: 80
+
+serviceAccount:
+  name: nchogovadze-service-account
+
+configMap:
+  name: nchogovadze-config-map
+  index: |
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <title>Welcome Guest!</title>
+    </head>
+    <body>
+        <h1>Hello, World from nchogovadze!</h1>
+    </body>
+    </html>
+
+role:
+  name: nchogovadze-role
+
+roleBinding:
+  name: nchogovadze-role-binding
+
+virtualService:
+  name: nchogovadze-virtual-service
+  ingressGatewayName: istio-system/academy-istio-ingressgateway
+
